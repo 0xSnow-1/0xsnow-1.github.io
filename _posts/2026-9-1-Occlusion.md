@@ -9,7 +9,6 @@ image:
 description: "A citation-grounded dental FAQ assistant over 15 openly licensed documents — hybrid retrieval, pre-LLM guardrails, and evals with the misses published alongside the wins."
 ---
 
-![Dental Theme img](/assets/img/posts/occlusion.jpeg)
 Dental front desks miss 20-35% of incoming calls during business hours, and 45% of calls arrive when nobody is answering at all.
 Occlusion is my attempt at the routine slice of that problem: a question-answering system over 15 openly licensed dental patient-education documents. It answers with verifiable citations, or refuses safely instead of guessing.
 
