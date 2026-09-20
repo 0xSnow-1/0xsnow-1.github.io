@@ -1,16 +1,19 @@
 ---
-title: "Occlusion: cited dental answers or safe refusal, measured not claimed"
+title: "Occlusion: a hybrid-retrieval dental RAG assistant"
 date: 2026-09-01 10:00:00 +0000
 categories: [Projects, RAG]
 tags: [langgraph, qdrant, ragas, healthcare-safety, python]
 image:
   path: /assets/img/posts/occlusion.jpeg
   alt: Dental Theme img
-description: "A citation-grounded dental FAQ assistant over 15 openly licensed documents — hybrid retrieval, pre-LLM guardrails, and evals with the misses published alongside the wins."
+description: "A dental FAQ assistant over 15 openly licensed documents: hybrid dense-plus-sparse retrieval with reciprocal-rank fusion, pre-LLM guardrails, and evals with the misses published alongside the wins."
 ---
+
+## What I built
 
 Dental front desks miss 20-35% of incoming calls during business hours, and 45% of calls arrive when nobody is answering at all.
 Occlusion is my attempt at the routine slice of that problem: a question-answering system over 15 openly licensed dental patient-education documents. It answers with verifiable citations, or refuses safely instead of guessing.
+Underneath: hybrid dense-plus-sparse retrieval fused with reciprocal rank fusion, a deterministic guardrail that refuses before the model is ever called, and citation checks that fail closed.
 
 ## The problem
 
