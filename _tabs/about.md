@@ -44,4 +44,4 @@ Open to AI engineer roles, remote or on-site.
 - Email: [0xahmed.gamal@gmail.com](mailto:0xahmed.gamal@gmail.com)
 - GitHub: [0xSnow-1](https://github.com/0xSnow-1)
 - LinkedIn: [in/ahmed-gamal-363b47307](https://www.linkedin.com/in/ahmed-gamal-363b47307)
-- X: [0xSnowEth](https://x.com/0xSnowEth)
+- X: [_0xSnowEth](https://x.com/_0xSnowEth)
