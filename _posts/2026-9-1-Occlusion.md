@@ -5,7 +5,7 @@ categories: [Projects, RAG]
 tags: [langgraph, qdrant, ragas, healthcare-safety, python]
 image:
   path: /assets/img/posts/occlusion.jpeg
-  alt: Dental Theme img
+  alt: A tooth rendered as a grid of teal pins on a dark surface
 description: "A dental FAQ assistant over 15 openly licensed documents: hybrid dense-plus-sparse retrieval with reciprocal-rank fusion, pre-LLM guardrails, and evals with the misses published alongside the wins."
 ---
 
@@ -44,7 +44,7 @@ The pipeline, as-built on main:
 ```text
 User question
   |
-Deterministic guardrail (regex, no LLM) — flagged? --> Refusal(out_of_scope), LLM never called
+Deterministic guardrail (regex, no LLM) - flagged? --> Refusal(out_of_scope), LLM never called
   | allowed
 Hybrid retrieval (Qdrant dense top_k 20 + sparse top_k 20, server RRF, client rrf_fuse fallback, top_n 5)
   |
