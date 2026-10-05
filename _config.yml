@@ -40,9 +40,9 @@ social:
     # The first element serves as the copyright owner's link
     - https://twitter.com/0xsnoweth # change to your Twitter homepage
     - https://github.com/0xSnow-1 # change to your GitHub homepage
+    - https://www.linkedin.com/in/ahmed-gamal-363b47307 # LinkedIn profile
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
 
 # Site Verification Settings
 webmaster_verifications:
@@ -85,8 +85,8 @@ pageviews:
 #
 # Available options:
 #
-#     light — Use the light color scheme
-#     dark — Use the dark color scheme
+#     light - Use the light color scheme
+#     dark - Use the dark color scheme
 #
 theme_mode: # [light | dark]
 
@@ -222,6 +222,7 @@ exclude:
   - tools
   - README.md
   - LICENSE
+  - quick-reference.md
   - purgecss.js
   - "*.config.js"
   - "package*.json"

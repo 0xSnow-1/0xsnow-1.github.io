@@ -1,4 +1,4 @@
-# Quick Reference — 0xsnow-1.github.io
+# Quick Reference - 0xsnow-1.github.io
 
 Assumes Ruby/bundler already installed. Just the commands, by scenario.
 
@@ -63,7 +63,7 @@ tags: [tech1, tech2]
 
 ## 🗄️ Add something to the Archive under an old/past date
 
-Same as a blog post — just set `date:` to the real date it happened. No other steps.
+Same as a blog post - just set `date:` to the real date it happened. No other steps.
 
 ```bash
 nano _posts/2019-06-15-old-thing-i-did.md
@@ -79,13 +79,13 @@ tags: [tag1]
 
 Content here.
 ```
-Filename date can stay anything, but `date:` in the front matter is what controls Archives placement — make sure that one's correct.
+Filename date can stay anything, but `date:` in the front matter is what controls Archives placement - make sure that one's correct.
 
 ---
 
 ## 🏷️ Add a brand-new category or tag
 
-Nothing to create separately — just type a new name into `categories:` or `tags:` in any post's front matter. The page for it (`/categories/`, `/tags/`) generates automatically on next build.
+Nothing to create separately - just type a new name into `categories:` or `tags:` in any post's front matter. The page for it (`/categories/`, `/tags/`) generates automatically on next build.
 
 ---
 
