@@ -1,7 +1,20 @@
 {% comment %}
-  The sidebar is not rendered in this theme. The empty #sidebar element has to
-  stay in the DOM because the theme scripts call classList on it when the
-  sidebar trigger (kept, hidden, in the header) is clicked.
+  Identity rail. Rendered on every page that is not a post, where the article
+  takes the full width and the sticky strip carries the navigation.
+  The #sidebar id has to stay because the theme scripts call classList on it.
 {% endcomment %}
 
-<aside aria-label="Sidebar" id="sidebar" class="d-none"></aside>
+<aside aria-label="Sidebar" id="sidebar" class="ed-rail">
+  <a href="{{ '/' | relative_url }}" class="ed-rail-avatar">
+    {%- if site.avatar != empty and site.avatar -%}
+      {%- capture avatar_url -%}
+        {% include media-url.html src=site.avatar %}
+      {%- endcapture -%}
+      <img src="{{- avatar_url -}}" width="64" height="64" alt="{{ site.social.name | default: site.title }}">
+    {%- endif -%}
+  </a>
+
+  <a class="ed-rail-name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+  <p class="ed-rail-tagline">{{ site.tagline }}</p>
+  <p class="ed-rail-desc">{{ site.description }}</p>
+</aside>
