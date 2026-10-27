@@ -13,6 +13,19 @@ script_includes:
 
 {% include toc-status.html %}
 
+<div id="ed-subbar">
+  <div class="ed-subbar-inner">
+    <a class="ed-subbar-back" href="{{ '/archives/' | relative_url }}">&#9666; Posts</a>
+    <span class="ed-subbar-title">{{ page.title }}</span>
+    <details class="ed-subbar-parts" hidden>
+      <summary><span data-part>Part 1/1</span></summary>
+      <nav class="ed-subbar-menu" data-part-list></nav>
+    </details>
+  </div>
+  <div class="ed-subbar-progress"><span data-progress></span></div>
+</div>
+<script defer src="{{ '/assets/js/ed-subbar.js' | relative_url }}"></script>
+
 <article class="px-1 ed-post" data-toc="{{ enable_toc }}">
   <header>
     <h1 data-toc-skip>{{ page.title }}</h1>
