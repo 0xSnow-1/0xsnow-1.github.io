@@ -4,8 +4,10 @@ date: 2026-09-01 10:00:00 +0000
 categories: [Projects, RAG]
 tags: [langgraph, qdrant, ragas, healthcare-safety, python]
 image:
-  path: /assets/img/posts/occlusion.jpeg
+  path: /assets/img/posts/occlusion-v2.jpeg
   alt: A tooth rendered as a grid of teal pins on a dark surface
+  width: 1200
+  height: 630
 description: "A dental FAQ assistant over 15 openly licensed documents: hybrid dense-plus-sparse retrieval with reciprocal-rank fusion, pre-LLM guardrails, and evals with the misses published alongside the wins."
 ---
 
