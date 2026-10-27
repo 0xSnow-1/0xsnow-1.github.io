@@ -1,6 +1,17 @@
 ---
 ---
 
+@use 'abstracts/variables' with (
+  $theme: '{{ site.theme_mode }}'
+);
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
 /* =============================================================================
    Editorial restyle.
 
@@ -19,6 +30,7 @@
   --ed-wrap: 1180px;
   --ed-measure: 660px;
   --ed-side: 16px;
+  --ed-sidebar-w: 260px;
   --ed-radius: 2px;
   --ed-read-size: clamp(17px, 16.55px + 0.111vw, 18px);
   --ed-read-lh: 1.65;
@@ -164,26 +176,37 @@
   display: none !important;
 }
 
-/* Identity rail. It sits in the empty left margin of the wrap, so it never
-   shifts the reading column. Posts drop it in favour of the sticky strip. */
+/* Profile sidebar. Index pages get the identity column; posts drop it in
+   favour of the sticky strip. */
 
 #sidebar {
   display: none !important;
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1024px) {
   #sidebar {
-    display: block !important;
+    display: flex !important;
     position: fixed;
     top: 0;
     bottom: 0;
-    left: calc(50% - var(--ed-wrap) / 2 + var(--ed-side));
-    width: 200px;
+    left: 0;
+    width: var(--ed-sidebar-w);
     height: auto;
-    padding: 96px 0 32px;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 40px 24px 28px;
     overflow-y: auto;
-    background: none;
-    z-index: 1;
+    background: var(--ed-ground);
+    border-right: 1px solid var(--ed-rule);
+  }
+
+  body:not(:has(#ed-subbar)) #main-wrapper {
+    margin-left: var(--ed-sidebar-w);
+  }
+
+  body:not(:has(#ed-subbar)) .ed-nav,
+  body:not(:has(#ed-subbar)) .ed-tools > a {
+    display: none;
   }
 }
 
@@ -191,19 +214,23 @@ body:has(#ed-subbar) #sidebar {
   display: none !important;
 }
 
-#sidebar .ed-rail-avatar {
+#sidebar .ed-side-profile {
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--ed-rule);
+}
+
+#sidebar .ed-side-avatar {
   display: block;
-  width: 64px;
-  height: 64px;
+  width: 80px;
+  height: 80px;
   margin-bottom: 18px;
   border: 1px solid var(--ed-rule);
   border-radius: 50%;
   overflow: hidden;
   background: var(--ed-sheet);
-  box-shadow: none;
 }
 
-#sidebar .ed-rail-avatar img {
+#sidebar .ed-side-avatar img {
   display: block;
   width: 100%;
   height: 100%;
@@ -211,12 +238,12 @@ body:has(#ed-subbar) #sidebar {
   border-radius: 0;
 }
 
-#sidebar .ed-rail-name {
+#sidebar .ed-side-name {
   display: block;
   padding: 0;
   border: 0;
   font-family: var(--ed-sans);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -224,27 +251,94 @@ body:has(#ed-subbar) #sidebar {
   text-decoration: none;
 }
 
-#sidebar .ed-rail-name:hover {
+#sidebar .ed-side-name:hover {
   color: var(--ed-accent);
 }
 
-#sidebar .ed-rail-tagline {
+#sidebar .ed-side-tagline {
   margin: 6px 0 0;
   font-family: var(--ed-mono);
   font-size: 10.5px;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--ed-muted);
 }
 
-#sidebar .ed-rail-desc {
-  max-width: 190px;
-  margin: 14px 0 0;
-  font-family: var(--ed-serif);
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--ed-soft);
+#sidebar .ed-side-nav {
+  flex: 1 1 auto;
+  padding: 24px 0;
+}
+
+#sidebar .ed-side-nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#sidebar .ed-side-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border: 1px solid transparent;
+  border-radius: var(--ed-radius);
+  font-family: var(--ed-mono);
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ed-muted);
+  text-decoration: none;
+}
+
+#sidebar .ed-side-nav a i {
+  width: 14px;
+  font-size: 11px;
+  text-align: center;
+  color: var(--ed-muted);
+}
+
+#sidebar .ed-side-nav a:hover {
+  color: var(--ed-ink);
+  border-color: var(--ed-rule);
+}
+
+#sidebar .ed-side-nav .is-active a,
+#sidebar .ed-side-nav .is-active a i {
+  background: var(--ed-pill-bg);
+  border-color: var(--ed-pill-bg);
+  color: var(--ed-pill-fg);
+}
+
+#sidebar .ed-side-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding-top: 20px;
+  border-top: 1px solid var(--ed-rule);
+}
+
+#sidebar .ed-side-bottom a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid transparent;
+  border-radius: var(--ed-radius);
+  font-size: 14px;
+  color: var(--ed-muted);
+  text-decoration: none;
+}
+
+#sidebar .ed-side-bottom a:hover {
+  color: var(--ed-ink);
+  border-color: var(--ed-rule);
 }
 
 #main-wrapper {

@@ -1,99 +1,45 @@
-{% if page.layout == 'home' %}
-<!-- The Side Bar -->
+{% comment %}
+  Profile sidebar. Rendered on every page that is not a post, where the article
+  takes the full width and the sticky strip carries the navigation.
+  The #sidebar id has to stay because the theme scripts call classList on it.
+{% endcomment %}
 
-<aside aria-label="Sidebar" id="sidebar" class="d-flex flex-column align-items-end">
-  <header class="profile-wrapper">
-    <a href="{{ '/' | relative_url }}" id="avatar" class="rounded-circle">
+<aside aria-label="Sidebar" id="sidebar" class="ed-side">
+  <header class="ed-side-profile">
+    <a href="{{ '/' | relative_url }}" class="ed-side-avatar">
       {%- if site.avatar != empty and site.avatar -%}
         {%- capture avatar_url -%}
           {% include media-url.html src=site.avatar %}
         {%- endcapture -%}
-        <img src="{{- avatar_url -}}" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+        <img src="{{- avatar_url -}}" width="80" height="80" alt="{{ site.social.name | default: site.title }}">
       {%- endif -%}
     </a>
 
-    <a class="site-title d-block" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-    <p class="site-subtitle fst-italic mb-0">{{ site.tagline }}</p>
+    <a class="ed-side-name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
+    <p class="ed-side-tagline">{{ site.tagline }}</p>
   </header>
-  <!-- .profile-wrapper -->
 
-  <nav class="flex-column flex-grow-1 w-100 ps-0">
-    <ul class="nav">
-      <!-- home -->
-      <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
-        <a href="{{ '/' | relative_url }}" class="nav-link">
+  <nav class="ed-side-nav" aria-label="Main">
+    <ul>
+      <li class="{% if page.layout == 'home' %}is-active{% endif %}">
+        <a href="{{ '/' | relative_url }}">
           <i class="fa-fw fas fa-home"></i>
           <span>{{ site.data.locales[include.lang].tabs.home | upcase }}</span>
         </a>
       </li>
-      <!-- the real tabs -->
       {% for tab in site.tabs %}
-        <li class="nav-item{% if tab.url == page.url %}{{ " active" }}{% endif %}">
-          <a href="{{ tab.url | relative_url }}" class="nav-link">
+        {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
+        <li class="{% if tab.url == page.url %}is-active{% endif %}">
+          <a href="{{ tab.url | relative_url }}">
             <i class="fa-fw {{ tab.icon }}"></i>
-            {% capture tab_name %}{{ tab.url | split: '/' }}{% endcapture %}
-
             <span>{{ site.data.locales[include.lang].tabs.[tab_name] | default: tab.title | upcase }}</span>
           </a>
         </li>
-        <!-- .nav-item -->
       {% endfor %}
     </ul>
   </nav>
 
-  <div class="sidebar-bottom d-flex flex-wrap align-items-center w-100">
-    {% unless site.theme_mode == 'light' or site.theme_mode == 'dark' %}
-      {%- capture icon_system -%}
-        <i class="fa-solid fa-display" data-theme-mode="system"></i>
-      {%- endcapture -%}
-
-      {%- capture icon_light -%}
-        <i class="fa-regular fa-sun" data-theme-mode="light"></i>
-      {%- endcapture -%}
-
-      {%- capture icon_dark -%}
-        <i class="fa-regular fa-moon" data-theme-mode="dark"></i>
-      {%- endcapture -%}
-
-      <div class="btn-group dropup">
-        <button
-          type="button"
-          class="btn btn-link nav-link"
-          aria-label="Switch Mode"
-          id="mode-toggle"
-          data-bs-toggle="dropdown"
-        >
-          {{- icon_light -}}
-          {{- icon_dark -}}
-          {{- icon_system -}}
-        </button>
-        <ul class="dropdown-menu rounded-3 mb-1 p-1">
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="light">
-              {{- icon_light -}}
-              {{- site.data.locales[lang].theme.light -}}
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="dark">
-              {{- icon_dark -}}
-              {{- site.data.locales[lang].theme.dark -}}
-            </button>
-          </li>
-          <li>
-            <button class="dropdown-item d-flex align-items-center" type="button" data-theme-mode="system">
-              {{- icon_system -}}
-              {{- site.data.locales[lang].theme.system -}}
-            </button>
-          </li>
-        </ul>
-      </div>
-
-      {% if site.data.contact.size > 0 %}
-        <span class="icon-border"></span>
-      {% endif %}
-    {% endunless %}
-
+  <div class="ed-side-bottom">
     {% for entry in site.data.contact %}
       {%- assign url = null -%}
 
@@ -143,22 +89,4 @@
       {% endif %}
     {% endfor %}
   </div>
-  <!-- .sidebar-bottom -->
 </aside>
-<!-- #sidebar -->
-{% else %}
-<aside aria-label="Sidebar" id="sidebar" class="ed-rail">
-  <a href="{{ '/' | relative_url }}" class="ed-rail-avatar">
-    {%- if site.avatar != empty and site.avatar -%}
-      {%- capture avatar_url -%}
-        {% include media-url.html src=site.avatar %}
-      {%- endcapture -%}
-      <img src="{{- avatar_url -}}" width="64" height="64" alt="{{ site.social.name | default: site.title }}">
-    {%- endif -%}
-  </a>
-
-  <a class="ed-rail-name" href="{{ '/' | relative_url }}">{{ site.title }}</a>
-  <p class="ed-rail-tagline">{{ site.tagline }}</p>
-  <p class="ed-rail-desc">{{ site.description }}</p>
-</aside>
-{% endif %}
