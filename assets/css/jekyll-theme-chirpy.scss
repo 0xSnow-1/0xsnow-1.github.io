@@ -1353,7 +1353,13 @@ article.ed-post > .content::after {
 }
 
 .categories .card-header a {
+  border-bottom: 0;
+  text-decoration: none;
   color: var(--ed-ink);
+}
+
+.categories .card-header a:hover {
+  color: var(--ed-accent);
 }
 
 .categories .list-group-item {
@@ -1365,11 +1371,18 @@ article.ed-post > .content::after {
 }
 
 .categories .list-group-item a {
+  border-bottom: 0;
+  text-decoration: none;
   color: var(--ed-ink);
+}
+
+.categories .list-group-item a:hover {
+  color: var(--ed-accent);
 }
 
 #tags .tag {
   border: 1px solid var(--ed-rule) !important;
+  border-bottom: 1px solid var(--ed-rule) !important;
   text-decoration: none;
   border-radius: var(--ed-radius);
   box-shadow: none;
