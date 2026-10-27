@@ -1,0 +1,7 @@
+{% comment %}
+  The sidebar is not rendered in this theme. The empty #sidebar element has to
+  stay in the DOM because the theme scripts call classList on it when the
+  sidebar trigger (kept, hidden, in the header) is clicked.
+{% endcomment %}
+
+<aside aria-label="Sidebar" id="sidebar" class="d-none"></aside>

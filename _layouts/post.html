@@ -1,0 +1,105 @@
+---
+layout: default
+panel_includes:
+  - toc
+tail_includes:
+  - post-nav
+  - related-posts
+script_includes:
+  - comment
+---
+
+{% include lang.html %}
+
+{% include toc-status.html %}
+
+<article class="px-1 ed-post" data-toc="{{ enable_toc }}">
+  <header>
+    <h1 data-toc-skip>{{ page.title }}</h1>
+
+    {% if page.description %}
+      <p class="post-desc">{{ page.description }}</p>
+    {% endif %}
+
+    <dl class="ed-meta">
+      <div>
+        <dt>Published</dt>
+        <dd>
+          <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %-d, %Y' }}</time>
+        </dd>
+      </div>
+
+      <div>
+        <dt>Reading time</dt>
+        <dd>{% include read-time.html content=content lang=lang %}</dd>
+      </div>
+
+      {% if page.tags.size > 0 %}
+        <div>
+          <dt>Topics</dt>
+          <dd>
+            {% for tag in page.tags %}
+              <a href="{{ site.baseurl }}/tags/{{ tag | slugify | url_encode }}/">{{ tag }}</a>
+            {% endfor %}
+          </dd>
+        </div>
+      {% endif %}
+    </dl>
+  </header>
+
+  {% if page.image %}
+    {%- assign _cover = page.image.path | default: page.image -%}
+    {%- capture cover_src -%}
+      {% include media-url.html src=_cover %}
+    {%- endcapture -%}
+    <img
+      class="ed-cover"
+      src="{{ cover_src | strip }}"
+      alt="{{ page.image.alt | default: page.title | xml_escape }}"
+      width="{{ page.image.width | default: 1200 }}"
+      height="{{ page.image.height | default: 630 }}"
+    >
+  {% endif %}
+
+  {% if enable_toc %}
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">{{ page.title }}</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">{{- site.data.locales[lang].panel.toc -}}</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">{{- page.title -}}</div>
+        <button id="toc-popup-close" type="button" class="btn-close btn-sm mx-3" aria-label="Close"></button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  {% endif %}
+
+  <div class="content">
+    {{ content }}
+  </div>
+
+  <div class="ed-author">
+    {%- capture avatar_url -%}
+      {% include media-url.html src=site.avatar %}
+    {%- endcapture -%}
+    <img src="{{ avatar_url | strip }}" width="48" height="48" alt="{{ site.social.name }}">
+    <div>
+      <p class="ed-author-name">
+        <a href="{{ '/about/' | relative_url }}">{{ site.social.name }}</a>
+      </p>
+      <p class="ed-author-bio">{{ site.tagline }}</p>
+    </div>
+    <div class="ed-share">
+      {% include post-sharing.html lang=lang %}
+    </div>
+  </div>
+</article>

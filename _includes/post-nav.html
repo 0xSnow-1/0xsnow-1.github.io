@@ -1,0 +1,21 @@
+{% if page.previous.url or page.next.url %}
+  <section class="ed-more" aria-label="More posts">
+    <p class="ed-label">More posts</p>
+
+    <div class="ed-more-grid">
+      {% if page.next.url %}
+        <a class="ed-more-link" href="{{ site.baseurl }}{{ page.next.url }}">
+          <span class="ed-label">{{ site.data.locales[include.lang].post.button.next }}</span>
+          <span class="ed-more-title">{{ page.next.title }}</span>
+        </a>
+      {% endif %}
+
+      {% if page.previous.url %}
+        <a class="ed-more-link" href="{{ site.baseurl }}{{ page.previous.url }}">
+          <span class="ed-label">{{ site.data.locales[include.lang].post.button.previous }}</span>
+          <span class="ed-more-title">{{ page.previous.title }}</span>
+        </a>
+      {% endif %}
+    </div>
+  </section>
+{% endif %}
