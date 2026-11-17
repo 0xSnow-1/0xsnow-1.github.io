@@ -1043,6 +1043,22 @@ article > .content blockquote > :last-child {
   margin-bottom: 0;
 }
 
+article > .content .post-disclaimer {
+  margin: 1.4rem 0 2rem;
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--ed-rule);
+  border-left: 3px solid var(--ed-accent);
+  border-radius: var(--ed-radius);
+  background: color-mix(in srgb, var(--ed-accent) 5%, transparent);
+  font-size: 0.93em;
+  line-height: 1.6;
+  color: var(--ed-soft);
+}
+
+article > .content .post-disclaimer p {
+  margin: 0;
+}
+
 article > .content hr {
   margin: 2.5rem 0;
   border: 0;

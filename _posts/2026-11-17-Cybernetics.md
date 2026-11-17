@@ -11,6 +11,10 @@ image:
   height: 628
 ---
 
+<div class="post-disclaimer" markdown="1">
+This blog post was fully written by hand.
+</div>
+
 The word cybernetics comes from the Greek "_kybernētēs_", meaning “steersman”. A steersman doesn’t plan every wave in advance, They hold a destination in mind and watch what the sea does, and keep correcting.
 
 I believe that’s the best way to understand where agents are heading, For a long time we’ve been giving them tasks: "write this email",  "draft this blog", "fix this bug" It's as if we're plotting the whole route before leaving the harbor itself. But as agents get more capable, we’re starting to give them goals instead: "maintain a blog", "make this product successful"
