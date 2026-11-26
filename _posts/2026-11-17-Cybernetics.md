@@ -5,10 +5,10 @@ categories: [Agents]
 tags: [Goal, steering, agents]
 description: "Stop giving agents tasks. Start steering them toward goals. My take on Harrison’s From tasks to goals, through the lens of cybernetics."
 image:
-  path: /assets/img/posts/celestial-compass-through-mist.jpg
+  path: /assets/img/posts/celestial-compass-cover.jpg
   alt: "A robed figure steering a small boat through dark mist toward a distant star"
   width: 1200
-  height: 628
+  height: 630
 ---
 
 <div class="post-disclaimer" markdown="1">
